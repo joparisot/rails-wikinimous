@@ -1,4 +1,7 @@
+
 <h1>Articles#show</h1>
 
 <h1><%= @article.title %></h1>
 <p><%= @article.content %></p>
+
+<%= Kramdown::Document.new('**markdown** exemple test').to_html %>

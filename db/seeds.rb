@@ -7,6 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+
 10.times do
-  Article.create({title: Faker::Lorem.word, content: Faker::Lorem.paragraph})
+  Article.create({title: Faker::Lorem.word, content: Faker::Lorem.paragraph, Html: '<html>
+  <body>
+
+  <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+
+  <p>Marking up abbreviations can give useful information to browsers, translation systems and search-engines.</p>
+
+  </body>
+  </html>'})
 end
