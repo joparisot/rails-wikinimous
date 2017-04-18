@@ -1,6 +1,13 @@
 <%= form_for(@article) do |f|  %>
   <%= f.label :title %>
   <%= f.text_field :title, placeholder: "Article's title" %>
-  <%= f.text_field :content, placehodler: "Article's content" %>
+  <%= f.text_field :content, placehodler: "Article's content", id: :editor %>
   <%= f.submit %>
 <% end %>
+
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
