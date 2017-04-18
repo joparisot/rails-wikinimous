@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize, only: [:index, :edit]
 
   def index
     @articles = Article.all
@@ -13,13 +14,16 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    Article.create(article_params)
+    @article = Article.new(article_params)
+    @article.user_id = current_user.id
+    @article.save
     redirect_to articles_path
     # raise
     # Article.create(title: params[:article][:title], content: params[:article][:content])
   end
 
   def edit
+    redirect_to '/articles' unless current_user.id == @article.user_id
   end
 
   def update
@@ -39,6 +43,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :content, :user_id)
   end
 end
